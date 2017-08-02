@@ -14,6 +14,7 @@ function handValue (hand) {
   let handTotal = 0;
   let acesArr = [];
 
+// creating tests for card type
   function isFace (card) {
     if ((card === "J") || (card === "Q") || (card === "K")) {
       return true;
@@ -30,6 +31,7 @@ function handValue (hand) {
     }
   }
 
+// creating values for number cards and adding to total
   function numberValue (card) {
     if (card === "2") {
       handTotal += 2;
@@ -57,6 +59,7 @@ function handValue (hand) {
     }
   }
 
+// iterating through hand and counting card totals for number and face cards
   hand.forEach(function (item) {
     if (isFace(item) === true) {
       handTotal += 10;
@@ -64,12 +67,14 @@ function handValue (hand) {
     else if (isNumber(item) === true) {
       numberValue(item);
     }
+    // aces go to separate pile to be counted later
     else if (isAce(item) === true) {
       acesArr.push("ace!!");
     }
 
     });
 
+// determining ace value based on current hand total
     for (let i = 0; i < acesArr.length; i++) {
       if (handTotal >= 11) {
         handTotal += 1;
